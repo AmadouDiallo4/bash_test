@@ -6,7 +6,12 @@
 #
 # Auteur: Amadou
 # date: 22/02/2020
-# 
+# $1: premier argument
+# $2: second argument
+# $#: nombre d'arguments
+# $*: tous les arguments en une variable
+# $@: tous les arguments en tbleau
+# $0: nom du fichier lancé
 ################################################################
 
 echo "
