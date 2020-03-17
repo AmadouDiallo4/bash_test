@@ -16,23 +16,24 @@
 
 #si option --create
 if [ "$1" == "--create" ];then
-	echo ""
-	echo "notre option est --create"
-	echo ""
 	
+	# definition du nombre de conteneur	
 	nb_machine=1
 	[ "$2" != "" ] && nb_machine=$2
 
-	docker run -tid --name $USER-alpine alpine:latest
-	echo "j'ai crée ${nb_machine}"
+	# creation des conteneurs
+	echo "début de la crétion du conteneur"
+	for i in $(seq 1 $nb_machine);do
+		
+		docker run -tid --name $USER-alpine-$i alpine:latest
+		echo "Conteneur $USER-alpine-$i crée"
+	done
 
 #si option --drop
 elif [ "$1" == "--drop" ];then
-	echo ""
-	echo "notre option est --drop"
-	echo ""
-	
-	docker rm -f $USER-alpine
+	echo "suppression des conteneurs ..."
+	docker rm -f $(docker ps -a | grep $USER-alpine | awk '{print $1}')
+	echo " fin de suppression..."
 
 #si option --infos
 elif [ "$1" == "--infos" ];then
